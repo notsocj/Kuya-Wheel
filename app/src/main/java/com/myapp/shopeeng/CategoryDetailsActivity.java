@@ -3,6 +3,7 @@ package com.myapp.shopeeng;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +19,8 @@ public class CategoryDetailsActivity extends AppCompatActivity {
     private GridView carGridView;
     private CarAdapter carAdapter;
     private List<CarModel> carList;
+
+    private Button buttonreturn;
     private static List<CarModel> cartItems = new ArrayList<>();
 
     @Override
@@ -32,6 +35,12 @@ public class CategoryDetailsActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
+    buttonreturn = findViewById(R.id.btn_return);
+    buttonreturn.setOnClickListener(v -> {
+        startActivity(new Intent(CategoryDetailsActivity.this, HomeActivity.class));
+    });
 
     categoryTitle = findViewById(R.id.categoryTitle);
     carGridView = findViewById(R.id.carGridView);

@@ -1,6 +1,7 @@
 package com.myapp.shopeeng;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -14,7 +15,7 @@ import java.util.List;
 public class CartActivity extends AppCompatActivity {
     private ListView cartListView;
     private TextView totalPriceText;
-    private Button checkoutButton;
+    private Button checkoutButton,returnbutton;
     private List<CarModel> cartItems;
     private CartAdapter cartAdapter;
 
@@ -27,6 +28,7 @@ public class CartActivity extends AppCompatActivity {
         cartListView = findViewById(R.id.cartListView);
         totalPriceText = findViewById(R.id.totalPriceText);
         checkoutButton = findViewById(R.id.checkoutButton);
+        returnbutton = findViewById(R.id.btn_return);
 
         // Get cart items from CategoryDetailsActivity
         cartItems = CategoryDetailsActivity.getCartItems();
@@ -35,7 +37,12 @@ public class CartActivity extends AppCompatActivity {
 
         updateTotalPrice();
 
+        returnbutton.setOnClickListener(v -> {
+            startActivity(new Intent(CartActivity.this, HomeActivity.class));
+        });
+
         checkoutButton.setOnClickListener(v -> processCheckout());
+
     }
 
     private void updateTotalPrice() {
